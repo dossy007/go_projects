@@ -118,7 +118,7 @@ func main() {
     Body string
     Image string
   }
-  jkj
+
 
   // var post Post
 
