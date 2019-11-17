@@ -204,13 +204,3 @@ for rows.Next() { //for文
         log.Fatal("ListenAndServe: ", error)
     }
 }
-
-
-
-
-
-
-
-
-
-
