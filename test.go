@@ -4,44 +4,49 @@ package main
 
 import (
     "fmt"
-    "html/template"
+    _"html/template"
     "log"
     "net/http"
-    "strings"
-    "database/sql"
+    _"strings"
+    _"database/sql"
     _"github.com/go-sql-driver/mysql"
+    "./utils"
+    "./handle"
+    
+    //同じ階層のfolderを参照するときには、./で参照
 )
 
-func sayhelloName(w http.ResponseWriter, r *http.Request) {
-    r.ParseForm()
-    for k, v := range r.Form {
-        fmt.Println("key:", k)
-        fmt.Println("val:", strings.Join(v, ""))
-    }
-    t,_:= template.ParseFiles("index.html")
+// func sayhelloName(w http.ResponseWriter, r *http.Request) {
+//     r.ParseForm()
+//     for k, v := range r.Form {
+//         fmt.Println("key:", k)
+//         fmt.Println("val:", strings.Join(v, ""))
+//     }
+//     t,_:= template.ParseFiles("index.html")
 
-    type Mydata struct {
-        Name string
-        Age int
-        Message string
-    }
+//     type Mydata struct {
+//         Name string
+//         Age int
+//         Message string
+//     }
 
-    //構造体を定義 構造体で渡さないとあかんねんて(集合体)
-    pers := Mydata{
-        Name: "dossy",
-        Age: 100,
-        Message: "変数を持って来ているよ",
-    }
+//     //構造体を定義 構造体で渡さないとあかんねんて(集合体)
+//     pers := Mydata{
+//         Name: "dossy",
+//         Age: 100,
+//         Message: "変数を持って来ているよ",
+//     }
 
-    t.Execute(w,pers)
-}
+//     t.Execute(w,pers)
+// }
 
 
 func main() {
-    db, err := sql.Open("mysql","root:@/mydb")
-    if err != nil {
-        log.Fatal("エラーでっせ")
-    }
+    // db, err := sql.Open("mysql","root:@/mydb")
+    db := utils.ConnectD()
+    // if err != nil {
+    //     log.Fatal("エラーでっせ")
+    // }
     defer db.Close()
 
   type Post struct { //post構造体を定義
@@ -76,11 +81,10 @@ for rows.Next() { //for文
         panic(err.Error())
     }
 
-    http.HandleFunc("/", sayhelloName)       //アクセスのルーティングを設定します
+
+    http.HandleFunc("/", handle.SayhelloName)       //アクセスのルーティングを設定します
     error := http.ListenAndServe(":3000", nil) //監視するポートを設定します
     if error != nil {
         log.Fatal("ListenAndServe: ", error)
     }
 }
-
-
