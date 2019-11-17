@@ -43,7 +43,6 @@ func write_review() map[string]string{
 
 }
 
-
 func read_review(s []map[string]string) {
 	for num,block := range s {
 		fmt.Println(num,"titleは",block["title"])
@@ -59,7 +58,6 @@ func read_review(s []map[string]string) {
 	fmt.Println("タイトルは ",display["title"],"\nジャンルは",display["genre"],"\n感想は",display["review"])
 }
 
-
 func scan()(conv_num int) { //打ち込んだ文字を取得しintに変換
 	scanner := bufio.NewScanner(os.Stdin)
 		scanner.Scan() //入力待ち
@@ -69,7 +67,7 @@ func scan()(conv_num int) { //打ち込んだ文字を取得しintに変換
 		return conv_num
 }
 
-
+aa
 func main() {
 	var slice []map[string]string
 	forbun_label: //labelをfor文に対して宣言
