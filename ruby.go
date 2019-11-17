@@ -67,7 +67,6 @@ func scan()(conv_num int) { //打ち込んだ文字を取得しintに変換
 		return conv_num
 }
 
-aa
 func main() {
 	var slice []map[string]string
 	forbun_label: //labelをfor文に対して宣言
