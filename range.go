@@ -10,6 +10,6 @@ func main () {
 	// fmt.Println(len(sli))
 
 	for num := range sli{
-		fmt.Println("番号",num)
+		fmt.Println("番号",num,"slice-number",sli[num])
 	}
 }
