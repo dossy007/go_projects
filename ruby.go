@@ -45,8 +45,8 @@ func write_review() map[string]string{
 
 
 func read_review(s []map[string]string) {
-	for num := range s {
-		fmt.Println(num,"titleは",s[num]["title"])
+	for num,block := range s {
+		fmt.Println(num,"titleは",block["title"])
 	}
 	fmt.Println("みたい番号を取得")
 	number := scan()
