@@ -39,3 +39,4 @@ func Posts() [][]string { //2重slice 全件取得
 
 //[][]stringではなく
 //[]Vertexを返すように修正
+//今からここをvertex(strucで返すように修正を行う)
