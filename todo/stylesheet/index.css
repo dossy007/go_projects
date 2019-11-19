@@ -1,7 +1,20 @@
-p {
-  color:red;
+wrapper {
+  height:100%;
+}
+
+header {
+  height:10%;
+  background-color:#99FF66;
+}
+.content {
+  height: 50%;;
+}
+
+.img-content {
+  height: 50%;
 }
 .image {
   /* color:red; */
-  height:20%;
+  height:100%;
+  width:15%;
 }
