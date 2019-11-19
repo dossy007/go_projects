@@ -7,15 +7,19 @@
 </head>
 
 <body>
-  <header>header</header>
+  <wrapper>
+    <header>header</header>
 
-  {{range .}}
-  <p>{{.Id}}</p>
-  <p>画像は{{.Image}}</p>
-  <div class="img">
-    <img src="{{.Image}}"></img>
-  </div>
-  {{end}}
+    {{range .}}
+    <div class="content">
+      <p>{{.Id}}</p>
+      <!-- <p>画像は{{.Image}}</p> -->
+      <div class="img-content">
+        <img src="{{.Image}}" class="image"></img>
+      </div>
+    </div>
+    {{end}}
+  </wrapper>
 </body>
 
 </html>
