@@ -6,7 +6,13 @@ import (
 	"../database"
 )
 
-func Posts() [][]string { //2重slice 全件取得
+type Vertex struct {
+	Id    int
+	Body  string
+	Image string
+}
+
+func Posts() []Vertex { //2重slice 全件取得
 	db := database.ConnectDB()
 	defer db.Close()
 
@@ -17,24 +23,27 @@ func Posts() [][]string { //2重slice 全件取得
 	}
 
 	// double_s := [][]string
-	var double_s [][]string
+	// var double_s [][]string
+	var sli []Vertex
 	// 2重sliceをstringで定義
+	var v1 Vertex //structをv1で使用する宣言
 
 	for rows.Next() { //nextはscanを使う為
 
-		var id int
-		var body string
-		var image string
+		// var id int
+		// var body string
+		// var image string
 
-		if err := rows.Scan(&id, &body, &image); err != nil {
+		if err := rows.Scan(&v1.Id, &v1.Body, &v1.Image); err != nil {
 			log.Fatal(err)
 		}
 		// rows.Scan(&id,&body,&image)
-
-		d := []string{body, image} //sliceを定義
-		double_s = append(double_s, d)
+		// fmt.Println(v1.Id)
+		// d := []string{v1.Body, v1.Image} //sliceを定義
+		sli = append(sli, v1)
+		// fmt.Println(sli)
 	}
-	return double_s
+	return sli
 }
 
 //[][]stringではなく
