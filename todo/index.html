@@ -1,0 +1,21 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="stylesheet/index.css">
+</head>
+
+<body>
+  <header>header</header>
+
+  {{range .}}
+  <p>{{.Id}}</p>
+  <p>画像は{{.Name}}</p>
+  <div class="img">
+    <img src="{{.Name}}"></img>
+  </div>
+  {{end}}
+</body>
+
+</html>
