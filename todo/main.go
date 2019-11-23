@@ -10,6 +10,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", handle.Showindex) //index.htmlを表示
+	http.HandleFunc("/echo", handle.Echo)
 	http.Handle("/stylesheet/", http.StripPrefix("/stylesheet/", http.FileServer(http.Dir("stylesheet/"))))
 	//Prefix(prefix string, h handler)
 	//(prefix stringはurlpathで受け取った、requestを削除し,handler(後ろの引数)をinvokeしている)

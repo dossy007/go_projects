@@ -11,11 +11,27 @@
     <header>header</header>
 
     {{range .}}
-    <div class="content">
-      <p>{{.Id}}</p>
-      <!-- <p>画像は{{.Image}}</p> -->
-      <div class="img-content">
-        <img src="{{.Image}}" class="image"></img>
+    <div class="main-content">
+      <div class="sub-content">
+        <div class="check-box">
+        </div>
+        <div class="main-box">
+          <div class="text-content">
+            <p>{{.Body}}</p>
+          </div>
+          <div class="img-content">
+            <img src="{{.Image}}" class="image"></img>
+          </div>
+        </div>
+        <div class="burger-box">
+          <a class="square" href="">
+            <div class="burgerwrap">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
     {{end}}

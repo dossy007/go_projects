@@ -36,3 +36,10 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 	tem.Execute(w, p)
 	//execute is template to act and http.RequestWriter に書き出す
 }
+
+func Echo(w http.ResponseWriter, r *http.Request) {
+	tem, _ := template.ParseFiles("echo.html")
+	po := 1
+	tem.Execute(w, po) //poは2つ引数いるみたい
+
+}
