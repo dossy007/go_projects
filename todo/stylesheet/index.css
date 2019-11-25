@@ -158,7 +158,7 @@ a {
 
 .menu-dropdown {
   min-width: 100%;
-  padding: 15px 0;
+  padding: 5px 0;
   position: absolute;
   background: #ebebeb;
   z-index: 100;
@@ -182,8 +182,9 @@ a {
 }
 
 .menu:not(:hover) > .menu-dropdown {
-  padding: 4px 0;
-  background: #CCFFFF;
+  padding: 0.1px 0;
+  background: #dddddd;
+
   z-index: 99;
 }
 
