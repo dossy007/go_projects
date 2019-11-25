@@ -39,6 +39,7 @@
       )
     </script>
     <!-- headerだけreactで実装してみた -->
+
     <a href="/new">作成しに行こう</a>
     {{ range .}}
     <div class="main-content" data-id="{{.Id}}">
@@ -57,28 +58,11 @@
           <div>
             <span>menu</span>
             <ul>
-              <li><a href="#">編集</a></li>
-              <li><a href="#">削除</a></li>
+              <li><a href="edit/{{.Id}}">編集</a></li>
+              <li><a href="/{{.Id}}">削除</a></li>
             </ul>
           </div>
         </div>
-        <!-- <ul class="hList">
-          <li class="lists">
-            <a href="#click" class="menu">
-              <h2 class="menu-title">
-                <div class="arrow"></div>
-              </h2>
-              <ul class="menu-dropdown">
-                <li>編集</li>
-                <li>削除</li>
-                <li>horse</li>
-              </ul>
-            </a>
-          </li>
-        </ul> -->
-
-
-
       </div>
     </div>
     {{ end }}
