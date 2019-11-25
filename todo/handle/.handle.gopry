@@ -6,6 +6,7 @@ import (
 	"text/template"
 
 	"../serv"
+	"github.com/d4l3k/go-pry/pry"
 )
 
 type Vertex struct {
@@ -45,6 +46,7 @@ func New(w http.ResponseWriter, r *http.Request) {
 }
 
 func Create(w http.ResponseWriter, r *http.Request) {
+	pry.Pry()
 	if r.Method == "POST" {
 		fmt.Println("ok")
 	}

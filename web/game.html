@@ -1,0 +1,109 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>React Tutorial</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <div id="btn"></div>
+  <script type="text/babel">
+
+    class Square extends React.Component {
+      // TODO: remove the constructor
+      constructor(props) {
+        super(props);
+        this.state = {
+          value: null,
+        };
+      }
+      cre() {
+        console.log(111)
+      }
+
+      chtml() {
+        return (
+          <div class="aa">234444</div>
+        )
+      }
+
+      render() {
+        // TODO: use onClick={this.props.onClick}
+        // TODO: replace this.state.value with this.props.value
+        return (
+          // <button className="square" onClick={() => this.setState({ value: 'X' })}>
+
+          <button className="square" onClick={() => this.setState({ value: this.chtml() })}>
+            {this.state.value}
+          </button>
+        );
+      }
+    }
+
+    class Board extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          squares: Array(9).fill(null),
+        };
+      }
+
+      renderSquare(i) {
+        return <Square value={this.state.squares[i]} />;
+      }
+
+      render() {
+        const status = 'Next player: X';
+
+        return (
+          <div>
+            <div className="status">{status}</div>
+            <div className="board-row">
+              {this.renderSquare(0)}{this.renderSquare(1)}{this.renderSquare(2)}
+            </div>
+            <div className="board-row">
+              {this.renderSquare(3)}{this.renderSquare(4)}{this.renderSquare(5)}
+            </div>
+            <div className="board-row">
+              {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
+            </div>
+          </div>
+        );
+      }
+    }
+
+    class Game extends React.Component {
+      render() {
+        return (
+          <div className="game">
+            <div className="game-board">
+              <Board />
+            </div>
+            <div className="game-info">
+              <div>{/* status */}</div>
+              <ol>{/* TODO */}</ol>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    // ========================================
+
+    ReactDOM.render(
+      <Game />,
+      document.getElementById('root')
+    );
+
+
+  </script>
+</body>
+
+</html>

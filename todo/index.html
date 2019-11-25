@@ -8,15 +8,40 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="stylesheet/message.js"></script>
+  <!-- おそらくstylesheetを読み込んでいるからここのfolderでjqが使えるのだと -->
 </head>
 
 <body>
   <wrapper>
-    <header>header</header>
-    <!-- <script type="text/babel"> -->
+    <div id="root"></div>
 
+    <script type="text/babel">
+      class Header extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            value: null,
+          }
+        }
+
+        render() {
+          return (
+            <header>header</header>
+          )
+        }
+
+      }
+
+      ReactDOM.render(
+        <Header />,
+        document.getElementById('root')
+      )
+    </script>
+    <!-- headerだけreactで実装してみた -->
+    <a href="/new">作成しに行こう</a>
     {{ range .}}
-    <div class="main-content">
+    <div class="main-content" data-id="{{.Id}}">
       <div class="sub-content">
         <div class="check-box">
         </div>
@@ -28,6 +53,7 @@
             <img src="{{.Image}}" class="image"></img>
           </div>
         </div>
+
         <div class="burger-box">
           <a class="square" href="">
             <div class="burgerwrap">
@@ -41,6 +67,64 @@
     </div>
     {{ end }}
     <!-- </script> -->
+
+
+
+
+
+    <ul class="hList">
+      <li>
+        <a href="#click" class="menu">
+          <h2 class="menu-title">animals</h2>
+          <ul class="menu-dropdown">
+            <li>cat</li>
+            <li>dog</li>
+            <li>horse</li>
+            <li>cow</li>
+            <li>pig</li>
+          </ul>
+        </a>
+      </li>
+      <li>
+        <a href="#click" class="menu">
+          <h2 class="menu-title menu-title_2nd">names</h2>
+          <ul class="menu-dropdown">
+            <li>Kevin</li>
+            <li>Jim</li>
+            <li>Andy</li>
+          </ul>
+        </a>
+      </li>
+      <!-- <li>
+        <a href="#click" class="menu">
+          <h2 class="menu-title menu-title_3rd">things</h2>
+          <ul class="menu-dropdown">
+            <li>bench</li>
+            <li>pizza</li>
+            <li>Honda CB125</li>
+            <li>space</li>
+            <li>black matter</li>
+            <li>apple</li>
+            <li>philodendron</li>
+            <li>liver</li>
+            <li>brass</li>
+          </ul>
+        </a>
+      </li>
+      <li>
+        <a href="#click" class="menu">
+          <h2 class="menu-title menu-title_4th">Movies</h2>
+          <ul class="menu-dropdown">
+            <li>Godzilla</li>
+            <li>Man on Wire</li>
+            <li>Spirited Away</li>
+            <li>Interstellar</li>
+          </ul>
+        </a>
+      </li> -->
+    </ul>
+
+
   </wrapper>
 </body>
 

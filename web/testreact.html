@@ -1,0 +1,67 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>React Tutorial</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="./message.js"></script>
+</head>
+
+<body>
+  <script type="text/babel">
+    //ここにコードが入ります
+
+
+    class Hov extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { //define state
+          value: null,
+        };
+      }
+
+      createhtml() { //function
+        return (
+          <div class="down">
+            <div>aaa</div>
+            <div>bbb</div>
+            <a href="#">333</a>
+          </div >
+        )
+      }
+
+
+      render() {
+        var html = this.createhtml()
+        return (
+          <div class="contents">
+            <div class="up">
+              <button
+                onMouseOver={() => this.setState({ value: html })}>押して
+              </button>
+            </div>
+            {this.state.value}
+          </div >
+
+        )
+      }
+    }
+
+    ReactDOM.render(
+      < Hov />,
+      document.getElementById('action')
+    )
+            // ここにコードが入ります</script>
+  <div id="root"></div>
+  <div id="content"></div>
+  <div id="action" style="height:80px;width:50px"></div>
+
+
+</body>
+
+</html>

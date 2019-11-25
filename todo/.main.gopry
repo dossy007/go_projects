@@ -6,10 +6,12 @@ import (
 	"net/http"
 
 	"./handle"
+	"github.com/d4l3k/go-pry/pry"
 )
 
 func main() {
 	http.HandleFunc("/", handle.Showindex) //index.htmlを表示
+	pry.Pry()
 
 	http.HandleFunc("/new", handle.New)
 	http.HandleFunc("/create", handle.Create)
