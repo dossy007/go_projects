@@ -55,10 +55,10 @@ html {
 }
 
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
   /* height: 100%; */
   /* width: 600px; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   background-color: #ffffff;
   font-family: 'Roboto', sans-serif;
   color: #555555;
@@ -86,13 +86,13 @@ a {
   width: 100px;
   height: 40px;
   padding: 12px 0 0;
-  background: #9dc852;
+  background: #CCFFFF;
   text-align: center;
   color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
   transition: 0.3s background-color;
-  margin:19.92px auto 0 auto;
+  margin:1px auto 0 auto;
 }
 
 .menu-title:before {
@@ -183,7 +183,7 @@ a {
 
 .menu:not(:hover) > .menu-dropdown {
   padding: 4px 0;
-  background: #dddddd;
+  background: #CCFFFF;
   z-index: 99;
 }
 
@@ -232,7 +232,7 @@ a {
 .hList {
   overflow: hidden;
   height:300px; /*書き足した*/
-  padding-left:0px
+  padding-left:5px
 }
 
 .hList > * {
