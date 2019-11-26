@@ -54,3 +54,13 @@ func Posts(body string, image string) {
 	rows.Exec(body, image)
 	// Exec()にプリペアードステートメントを指定してSQLを実行する
 }
+
+func Delete(id int) {
+	db := database.ConnectDB()
+	defer db.Close()
+	rows, err := db.Prepare("DELETE FROM posts WHERE id=?")
+	if err != nil {
+		log.Fatal(err)
+	}
+	rows.Exec(id)
+}

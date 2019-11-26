@@ -34,7 +34,6 @@ func New(w http.ResponseWriter, r *http.Request) {
 }
 
 func Create(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.Method)
 	if r.Method == "POST" {
 		fmt.Println("post ok")
 	}
@@ -55,7 +54,7 @@ func Create(w http.ResponseWriter, r *http.Request) {
 }
 
 func Delete(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.URL)
+	// fmt.Println(r.URL)
 	params := r.URL.Query() //Queryで取得 map
 	var id string
 	for k, _ := range params { //mapのkeyをget
@@ -64,14 +63,8 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 
 	i, _ := strconv.Atoi(id) //string to int
 	fmt.Println(i)           //取れた！！！！
-	// p := strconv.Atoi(params)
-	// fmt.Println(p)
-	// re := regexp.MustCompile(`\d`)
-	// match := re.FindStringSubmatch(params)
-	// fmt.Println(match)
 
-	// fmt.Println(re)
-	// fmt.Printf("%T\n", params)
+	serv.Delete(i) //delete func
 
-	// fmt.Println("きてる")
+	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }
