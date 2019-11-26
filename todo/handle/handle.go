@@ -3,6 +3,7 @@ package handle
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 	"text/template"
 
 	"../serv"
@@ -51,4 +52,26 @@ func Create(w http.ResponseWriter, r *http.Request) {
 	serv.Posts(body, image) //insert to db
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently) //redierct to root
+}
+
+func Delete(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r.URL)
+	params := r.URL.Query() //Queryで取得 map
+	var id string
+	for k, _ := range params { //mapのkeyをget
+		id = k
+	}
+
+	i, _ := strconv.Atoi(id) //string to int
+	fmt.Println(i)           //取れた！！！！
+	// p := strconv.Atoi(params)
+	// fmt.Println(p)
+	// re := regexp.MustCompile(`\d`)
+	// match := re.FindStringSubmatch(params)
+	// fmt.Println(match)
+
+	// fmt.Println(re)
+	// fmt.Printf("%T\n", params)
+
+	// fmt.Println("きてる")
 }
