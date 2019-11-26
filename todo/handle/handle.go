@@ -39,17 +39,32 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 }
 
 func New(w http.ResponseWriter, r *http.Request) {
+
 	tem, _ := template.ParseFiles("new.html")
 	po := 1
 	tem.Execute(w, po) //poは2つ引数いるみたい
 }
 
 func Create(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r.Method)
 	if r.Method == "POST" {
-		fmt.Println("ok")
+		fmt.Println("post ok")
 	}
-	tem, _ := template.ParseFiles("new.html")
-	po := 1
-	tem.Execute(w, po) //poは2つ引数いるみたい
+	// fmt.FPrintf(w, "クエリ:%s\n", r.URL.RawQuery)
+	// fmt.Fprintf(w, "クエリ：%s\n", r.URL.RawQuery)
+	// Bodyデータを扱う場合には、事前にパースを行う
+	r.ParseForm()
 
+	// Formデータを取得.
+	form := r.PostForm
+	forms := form["say"][0]
+	fmt.Printf("%T\n", forms) //form is map value is []string of sliceで来るから[0]で取得
+
+	// fmt.Fprintf(w, "フォーム1：\n%v\n", form["say"])
+	//         wに描く format string  書き込む内容
+
+	// Showindex(w http.ResponseWriter, r *http.Request)
+	// tem, _ := template.ParseFiles("index.html")
+	// po := 1
+	// tem.Execute(w, po) //poは2つ引数いるみたい
 }
