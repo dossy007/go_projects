@@ -41,17 +41,14 @@ func Create(w http.ResponseWriter, r *http.Request) {
 	// Bodyデータを扱う場合には、事前にパースを行う
 	r.ParseForm()
 
-	// Formデータを取得.
+	// Formデータを取得
 	form := r.PostForm
 	body := form["body"][0]
-	image := form["image"][0]
-	fmt.Printf("%T\n", body) //form is map value is []string of sliceで来るから[0]で取得
+	image := form["image"][0] //form is map value is []string of sliceで来るから[0]で取得
 
 	// fmt.Fprintf(w, "フォーム1：\n%v\n", form["say"])
 	//         wに描く format string  書き込む内容
-	serv.Posts(body, image)
-	// Showindex(w http.ResponseWriter, r *http.Request)
-	tem, _ := template.ParseFiles("index.html")
-	po := 1
-	tem.Execute(w, po) //poは2つ引数いるみたい
+	serv.Posts(body, image) //insert to db
+
+	http.Redirect(w, r, "/", http.StatusMovedPermanently) //redierct to root
 }
