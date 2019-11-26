@@ -1,6 +1,7 @@
 package serv
 
 import (
+	"fmt"
 	"log"
 
 	"../database"
@@ -12,7 +13,7 @@ type Vertex struct {
 	Image string
 }
 
-func Posts() []Vertex { //2重slice 全件取得
+func Connected() []Vertex { //2重slice 全件取得
 	db := database.ConnectDB()
 	defer db.Close()
 
@@ -30,10 +31,6 @@ func Posts() []Vertex { //2重slice 全件取得
 
 	for rows.Next() { //nextはscanを使う為
 
-		// var id int
-		// var body string
-		// var image string
-
 		if err := rows.Scan(&v1.Id, &v1.Body, &v1.Image); err != nil {
 			log.Fatal(err)
 		}
@@ -46,6 +43,14 @@ func Posts() []Vertex { //2重slice 全件取得
 	return sli
 }
 
-//[][]stringではなく
-//[]Vertexを返すように修正
-//今からここをvertex(strucで返すように修正を行う)
+func Posts(body string, image string) {
+	db := database.ConnectDB()
+	defer db.Close()
+	fmt.Println(body, image)
+	rows, err := db.Prepare("INSERT INTO posts(body,image) VALUES(?,?)")
+	if err != nil {
+		log.Fatal(err)
+	}
+	rows.Exec(body, image)
+	// Exec()にプリペアードステートメントを指定してSQLを実行する
+}
