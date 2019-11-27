@@ -14,7 +14,10 @@ func main() {
 
 	http.HandleFunc("/new", handle.New)
 	http.HandleFunc("/create", handle.Create)
+	http.HandleFunc("/edit", handle.Edit)
+	http.HandleFunc("/update", handle.Update)
 	http.HandleFunc("/delete", handle.Delete)
+
 	http.Handle("/stylesheet/", http.StripPrefix("/stylesheet/", http.FileServer(http.Dir("stylesheet/"))))
 	//Prefix(prefix string, h handler)
 	//(prefix stringはurlpathで受け取った、requestを削除し,handler(後ろの引数)をinvokeしている)
