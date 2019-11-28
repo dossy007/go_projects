@@ -59,7 +59,7 @@
             <span>menu</span>
             <ul>
               <li><a href="edit?{{.Id}}">編集</a></li>
-              <li><a href="delete?{{.Id}}" method="delete">削除</a></li>
+              <li><a href="delete?{{.Id}}" class="destroy" d-id="{{.Id}}">削除</a></li>
             </ul>
           </div>
         </div>
@@ -67,7 +67,6 @@
     </div>
     {{ end }}
     <!-- </script> -->
-
 
   </wrapper>
 </body>

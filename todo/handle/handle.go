@@ -30,8 +30,7 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 func New(w http.ResponseWriter, r *http.Request) {
 
 	tem, _ := template.ParseFiles("new.html")
-	po := 1
-	tem.Execute(w, po) //poは2つ引数いるみたい
+	tem.Execute(w, "")
 }
 
 func Create(w http.ResponseWriter, r *http.Request) {
@@ -39,8 +38,7 @@ func Create(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("post ok")
 	}
 
-	// Bodyデータを扱う場合には、事前にパースを行う
-	r.ParseForm()
+	r.ParseForm() // Bodyデータを扱うには、事前にパースを行う
 
 	// Formデータを取得
 	form := r.PostForm
@@ -55,7 +53,6 @@ func Create(w http.ResponseWriter, r *http.Request) {
 }
 
 func Edit(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("edit")
 	tem, _ := template.ParseFiles("edit.html")
 	params := r.URL.Query()       //Queryで取得 map
 	e := serv.Edit(Getid(params)) //return []serv.Vertex
@@ -65,26 +62,26 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 func Update(w http.ResponseWriter, r *http.Request) {
 	if r.PostFormValue("_method") == "PUT" {
 		fmt.Println("put ok")
+		r.ParseForm()
+
+		form := r.PostForm
+		params := r.URL.Query()
+		id := Getid(params)
+		body := form["body"][0]
+		image := form["image"][0]
+
+		serv.Update(id, body, image)
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
 	}
-	r.ParseForm()
-
-	form := r.PostForm
-	params := r.URL.Query()
-	id := Getid(params)
-	// Formデータを取得
-	body := form["body"][0]
-	image := form["image"][0]
-	fmt.Println(id, body, image)
-
-	serv.Update(id, body, image)
 }
 
 func Delete(w http.ResponseWriter, r *http.Request) {
-	params := r.URL.Query() //取れた！！！！
+	if r.Method == "DELETE" {
+		params := r.URL.Query()    //to use Getid
+		serv.Delete(Getid(params)) //use sql delete func
 
-	serv.Delete(Getid(params)) //delete func
-
-	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	}
 }
 
 func Getid(params url.Values) int { //requestからidを取得

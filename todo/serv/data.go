@@ -46,7 +46,6 @@ func Connected() []Vertex { //2重slice 全件取得
 func Posts(body string, image string) {
 	db := database.ConnectDB()
 	defer db.Close()
-	fmt.Println(body, image)
 	rows, err := db.Prepare("INSERT INTO posts(body,image) VALUES(?,?)")
 	if err != nil {
 		log.Fatal(err)
@@ -59,7 +58,6 @@ func Edit(id int) []Vertex {
 	db := database.ConnectDB()
 	defer db.Close()
 	fmt.Printf("%T", id)
-	// rows, err := db.Prepare("SELECT * FROM posts WHERE id=?")
 	rows, err := db.Query("SELECT * FROM posts WHERE id = ?", id)
 	//where分は配列で取得しよる
 	if err != nil {
@@ -83,7 +81,6 @@ func Edit(id int) []Vertex {
 }
 
 func Update(id int, body string, image string) {
-	fmt.Println(id, body, image)
 	db := database.ConnectDB()
 	defer db.Close()
 	rows, err := db.Prepare("UPDATE posts SET body =?,image =? WHERE id = ?")
@@ -95,6 +92,7 @@ func Update(id int, body string, image string) {
 }
 
 func Delete(id int) {
+	fmt.Println("de動いたよ")
 	db := database.ConnectDB()
 	defer db.Close()
 	rows, err := db.Prepare("DELETE FROM posts WHERE id=?")
