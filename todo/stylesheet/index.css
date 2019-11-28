@@ -1,3 +1,9 @@
+
+html {
+  height: 100%;
+  background-color: #f8f8f8;
+}
+
 wrapper {
   height:100%;
 }
@@ -7,7 +13,7 @@ header {
   background-color:#99FF66;
 }
 .main-content {
-  height: 30%;
+  height: 130px;;
   width:50%;
   margin: 1px auto 0 10%;
   background-color: #CCFFFF;
@@ -45,35 +51,8 @@ header {
 }
 
 
-
-
-    @import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
-
-html {
-  height: 100%;
-  background-color: #f8f8f8;
-}
-
 li {
   list-style:none;
-}
-
-/*  */
-
-.arrow {
-  position: relative;
-}
-.arrow::before {
-content: "";
-display: block;
-position: absolute;
-top: -3px;
-right: 3%;
-width: 14px;
-height: 14px;
-border-top: 2px solid #000;
-border-right: 2px solid #000;
-transform: translateX(-50%) rotate(135deg);
 }
 
 #menu div {
