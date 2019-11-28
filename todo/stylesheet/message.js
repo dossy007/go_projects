@@ -42,9 +42,10 @@ $(function () {
       $.ajax({
         url: `/delete?${id}`,
         type: "DELETE",
-        success: function (response) {
-          console.log(response)
-          console.log("lkok")
+        success: function (response) { //response is latest html
+          $("html").empty();
+          $("html").append(response);
+          alert("削除が完了しました")
         }
       })
       // location.href = 'index.html';
