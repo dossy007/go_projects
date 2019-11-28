@@ -92,7 +92,6 @@ func Update(id int, body string, image string) {
 }
 
 func Delete(id int) {
-	fmt.Println("de動いたよ")
 	db := database.ConnectDB()
 	defer db.Close()
 	rows, err := db.Prepare("DELETE FROM posts WHERE id=?")

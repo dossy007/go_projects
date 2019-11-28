@@ -21,8 +21,6 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 
 	p := serv.Connected()
 	//serv packageのConnected funcでdbの情報を受け取っている
-	// fmt.Println(r.Method)
-	fmt.Printf("%T\n", p)
 	tem.Execute(w, p)
 	//execute is template to act and http.RequestWriter に書き出す
 }
@@ -35,21 +33,20 @@ func New(w http.ResponseWriter, r *http.Request) {
 
 func Create(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		fmt.Println("post ok")
+
+		r.ParseForm() // Bodyデータを扱うには、事前にパースを行う
+
+		// Formデータを取得
+		form := r.PostForm
+		body := form["body"][0]
+		image := form["image"][0] //form is map value is []string of sliceで来るから[0]で取得
+
+		// fmt.Fprintf(w, "フォーム1：\n%v\n", form["say"])
+		//         wに描く format string  書き込む内容
+		serv.Posts(body, image) //insert to db
+
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
 	}
-
-	r.ParseForm() // Bodyデータを扱うには、事前にパースを行う
-
-	// Formデータを取得
-	form := r.PostForm
-	body := form["body"][0]
-	image := form["image"][0] //form is map value is []string of sliceで来るから[0]で取得
-
-	// fmt.Fprintf(w, "フォーム1：\n%v\n", form["say"])
-	//         wに描く format string  書き込む内容
-	serv.Posts(body, image) //insert to db
-
-	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }
 
 func Edit(w http.ResponseWriter, r *http.Request) {
