@@ -15,32 +15,10 @@
 <body>
   <wrapper>
     <div id="root"></div>
-
-    <script type="text/babel">
-      class Header extends React.Component {
-        constructor(props) {
-          super(props)
-          this.state = {
-            value: null,
-          }
-        }
-
-        render() {
-          return (
-            <header>header</header>
-          )
-        }
-
-      }
-
-      ReactDOM.render(
-        <Header />,
-        document.getElementById('root')
-      )
-    </script>
-    <!-- headerだけreactで実装してみた -->
+    <header>header</header>
 
     <a href="/new">作成しに行こう</a>
+    <div></br>更新日順に並び替える</div>
     <form action="/" method="POST">
       <select name="sort_id" id="sort">
         <option value="0">新しい</option>

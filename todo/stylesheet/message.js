@@ -52,4 +52,13 @@ $(function () {
     }
     // });
   })
+
+  //display no image
+  const images = document.querySelectorAll('img');
+  images.forEach((image) => {
+    image.addEventListener('error', () => {
+      image.setAttribute('src', 'stylesheet/no-image.png');
+    });
+  });
+
 });
