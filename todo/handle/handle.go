@@ -1,7 +1,6 @@
 package handle
 
 import (
-	"fmt"
 	"net/http"
 	"net/url"
 	"sort"
@@ -22,20 +21,18 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 
 	p := serv.Connected()
 	//serv packageのConnected funcでdbの情報を受け取っている
+
 	if r.Method == "POST" { //sort time
 		r.ParseForm()
 		form := r.PostForm
 		s, _ := strconv.Atoi(form["sort_id"][0])
-		// fmt.Printf("%T\n", s)
 		switch s {
-		case 0:
-			fmt.Println("0上から新しいよ")
+		case 0: //new
 			sort.Slice(p,
 				func(i, j int) bool {
 					return p[i].Updated_time.After(p[j].Updated_time)
 				})
-		case 1:
-			fmt.Println("1上から古いよ")
+		case 1: //old
 			sort.Slice(p,
 				func(i, j int) bool {
 					return p[i].Updated_time.Before(p[j].Updated_time)
