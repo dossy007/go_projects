@@ -16,6 +16,34 @@
 </head>
 
 <body>
+
+
+  <!-- headerだけreactで実装してみたby todo -->
+  <script type="text/babel">
+    class Header extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          value: null,
+        }
+      }
+
+      render() {
+        return (
+          <header>header</header>
+        )
+      }
+
+    }
+
+    ReactDOM.render(
+      <Header />,
+      document.getElementById('root')
+    )
+  </script>
+  <!-- headerだけreactで実装してみたby todo -->
+
+
   <!-- <script type="text/babel">
     //ここにコードが入ります
 
