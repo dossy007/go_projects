@@ -40,11 +40,11 @@
       <input type="hidden" name="_method" value="PUT">
       <div>
         <label for="say">Let's write a comment!</label>
-        <input class="textarea" name="body" id="say" value="{{.Body}}">
+        <input class="textarea" name="body" id="say" value="{{.Body}}" maxlength="100" required>
       </div>
       <div>
         <label for="to">What greeting do you want to say?</label>
-        <input class="textarea" name="image" id="to" value="{{.Image}}">
+        <input class="textarea" name="image" id="to" value="{{.Image}}" cols="30" rows="10" required>
       </div>
       <div>
         <button>Send my greetings</button>
