@@ -10,17 +10,11 @@ import (
 	"../serv"
 )
 
-// type Vertex struct {
-// 	Id   int
-// 	Name string
-// 	//servでtypeを使用していて、その情報を持ってきてるのでいらない
-// }
-
 func Showindex(w http.ResponseWriter, r *http.Request) {
 	tem, _ := template.ParseFiles("index.html")
 
 	p := serv.Connected()
-	//serv packageのConnected funcでdbの情報を受け取っている
+	//serv packageのConnected funcでdbの情報を受けとる
 
 	if r.Method == "POST" { //sort time
 		r.ParseForm()
@@ -62,9 +56,9 @@ func Create(w http.ResponseWriter, r *http.Request) {
 
 		// fmt.Fprintf(w, "フォーム1：\n%v\n", form["say"])
 		//         wに描く format string  書き込む内容
-		serv.Posts(body, image) //insert to db
+		serv.Create(body, image) //insert to db
 
-		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		http.Redirect(w, r, "/", http.StatusMovedPermanently) //code 301
 	}
 }
 
@@ -99,7 +93,7 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Getid(params url.Values) int { //requestからidを取得
+func Getid(params url.Values) int { //get id from httprequest
 	var num string
 	for k, _ := range params { //mapのkeyをget
 		num = k

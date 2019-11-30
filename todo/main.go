@@ -18,14 +18,10 @@ func main() {
 	http.HandleFunc("/update", handle.Update)
 	http.HandleFunc("/delete", handle.Delete)
 
-	//sub http
-	// http.HandleFunc("/sort", sorting.Time)
-
 	//import css
 	http.Handle("/stylesheet/", http.StripPrefix("/stylesheet/", http.FileServer(http.Dir("stylesheet/"))))
 	//Prefix(prefix string, h handler)
 	//(prefix stringはurlpathで受け取った、requestを削除し,handler(後ろの引数)をinvokeしている)
-	//cssを反映する
 
 	err := http.ListenAndServe(":3000", nil)
 	if err != nil {

@@ -48,9 +48,7 @@ $(function () {
           alert("削除が完了しました")
         }
       })
-      // location.href = 'index.html';
     }
-    // });
   })
 
   //display no image

@@ -15,14 +15,6 @@ type Vertex struct { //for save
 	Updated_time time.Time
 }
 
-// const time_layout = "2007-01-02 Monday Jan 02 15:04:05 JST "
-
-// func JSTtime(t time.Time) time.Time { //return JST time
-// 	j_time, _ := t.Parse(time_layout, "2006-01-02 Monday Jan 02 15:04:05 JST")
-// 	fmt.Println(j_time)
-// 	return j_time
-// }  time.Timeをstringにする処理
-
 func Connected() []Vertex { //2重slice 全件取得
 	db := database.ConnectDB()
 	defer db.Close()
@@ -33,10 +25,7 @@ func Connected() []Vertex { //2重slice 全件取得
 		log.Fatal(err)
 	}
 
-	// double_s := [][]string
-	// var double_s [][]string
 	var sli []Vertex
-	// 2重sliceをstringで定義
 	var v1 Vertex //structをv1で使用する宣言
 
 	for rows.Next() { //nextはscanを使う為
@@ -45,17 +34,15 @@ func Connected() []Vertex { //2重slice 全件取得
 			log.Fatal(err)
 		}
 		sli = append(sli, v1)
-		// fmt.Println(sli)
 	}
 	return sli
 }
 
-func Posts(body string, image string) {
+func Create(body string, image string) {
 	db := database.ConnectDB()
 	defer db.Close()
 
 	create_time := time.Now() //time.Time
-
 	rows, err := db.Prepare("INSERT INTO posts(body,image,created_at,updated_at) VALUES(?,?,?,?)")
 	if err != nil {
 		log.Fatal(err)
@@ -72,17 +59,13 @@ func Edit(id int) []Vertex {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var sli []Vertex
-	// 2重sliceをstringで定義
+	var sli []Vertex  // sliceをVertexで定義
 	var v1 Vertex     //structをv1で使用する宣言
 	for rows.Next() { //nextはscanを使う為
 		if err := rows.Scan(&v1.Id, &v1.Body, &v1.Image, &v1.Created_time, &v1.Updated_time); err != nil {
 			log.Fatal(err)
 		}
-		// rows.Scan(&id,&body,&image)
-		// fmt.Println(v1.Id)
-		// d := []string{v1.Body, v1.Image} //sliceを定義
-		sli = append(sli, v1)
+		sli = append(sli, v1) // [{v1}]
 	}
 	return sli
 }
