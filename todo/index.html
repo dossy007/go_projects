@@ -41,6 +41,13 @@
     <!-- headerだけreactで実装してみた -->
 
     <a href="/new">作成しに行こう</a>
+    <form action="/" method="POST">
+      <select name="sort_id" id="name">
+        <option value="0">新しい</option>
+        <option value="1">古い</option>
+      </select>
+      <input type="submit" name="submit" value="送信">
+    </form>
     {{ range .}}
     <div class="main-content" data-id="{{.Id}}">
       <div class="sub-content">
@@ -64,6 +71,7 @@
           </div>
         </div>
       </div>
+      <div class="time">投稿時間{{.Updated_time}}</div>
     </div>
     {{ end }}
     <!-- </script> -->

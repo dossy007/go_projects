@@ -9,7 +9,8 @@ import (
 )
 
 func ConnectDB() *sql.DB {
-	db, err := sql.Open("mysql", "root:@/mydb")
+	db, err := sql.Open("mysql", "root:@/mydb?parseTime=true")
+
 	if err != nil {
 		log.Fatal(err)
 	}
