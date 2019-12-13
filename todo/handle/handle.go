@@ -6,7 +6,7 @@ import (
 	// "sort"
 	// "strconv"
 	"text/template"
-	// "github.com/dossy007/go_projects/todo/serv"
+	"github.com/dossy007/go_projects/todo/serv"
 
 
 	// "./serv"
@@ -36,7 +36,8 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 	// 			})
 	// 	}
 	// }
-	p:= 55
+	// p:= 55
+	p:= serv.Number()
 	tem.Execute(w, p)
 	//execute is template to act and http.RequestWriter に書き出す
 }

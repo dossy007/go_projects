@@ -19,16 +19,9 @@ import (
 
 
 
-func Showindex(w http.ResponseWriter, r *http.Request) {
-	// if r.URL.Path != "/" {
-	// 	http.NotFound(w, r)
-	// 	return
-	// }
-	// fmt.Fprint(w, "Hello, World!")
-	tem, _ := template.ParseFiles("index.html")
-	p:= 1
-	tem.Execute(w, p)
-
+func Number() int {
+	num := 77
+	return num
 }
 
 // func Connected() []Vertex { //2重slice 全件取得
