@@ -16,7 +16,7 @@ import (
 func Showindex(w http.ResponseWriter, r *http.Request) {
 	tem, _ := template.ParseFiles("index.html")
 
-	// p := serv.Connected()
+	p := serv.Connected()
 	//serv packageのConnected funcでdbの情報を受けとる
 
 	// if r.Method == "POST" { //sort time
@@ -37,7 +37,7 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 	// 	}
 	// }
 	// p:= 55
-	p:= serv.Number()
+	// p:= serv.Number()
 	tem.Execute(w, p)
 	//execute is template to act and http.RequestWriter に書き出す
 }
