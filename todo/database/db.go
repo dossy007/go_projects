@@ -18,7 +18,7 @@ func ConnectDB() *sql.DB {
 		password       = os.Getenv("CLOUDSQL_PASSWORD") // NOTE: password may be empty
 )
 
-// var err error
+var err error
 db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@cloudsql(%s)/", user, password, connectionName))
 if err != nil {
 		log.Fatalf("Could not open db: %v", err)
