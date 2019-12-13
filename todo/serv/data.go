@@ -11,13 +11,13 @@ import (
 
 )
 
-// type Vertex struct { //for save
-// 	Id           int
-// 	Body         string
-// 	Image        string
-// 	Created_time time.Time
-// 	Updated_time time.Time
-// }
+type Vertex struct { //for save
+	Id           int
+	Body         string
+	Image        string
+	Created_time time.Time
+	Updated_time time.Time
+}
 
 
 
