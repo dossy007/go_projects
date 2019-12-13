@@ -25,7 +25,6 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 	// 	return
 	// }
 	// fmt.Fprint(w, "Hello, World!")
-
 	tem, _ := template.ParseFiles("index.html")
 	p:= 1
 	tem.Execute(w, p)
