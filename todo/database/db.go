@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"os"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 	//sql: unknown driver "mysql" (forgotten import?)と言われる
