@@ -12,9 +12,9 @@ var db *sql.DB
 func ConnectDB() *sql.DB {
 	// db, err := sql.Open("mysql", "root:@/mydb?parseTime=true")
 	var (
-		connectionName = CLOUDSQL_CONNECTION_NAME
-		user           = CLOUDSQL_USER
-		password       = CLOUDSQL_PASSWORD // NOTE: password may be empty
+		connectionName = os.Getenv("CLOUDSQL_CONNECTION_NAME")
+		user           = os.Getenv("CLOUDSQL_USER")
+		password       = os.Getenv("CLOUDSQL_PASSWORD") // NOTE: password may be empty
 )
 
 // var err error
