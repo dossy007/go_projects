@@ -7,6 +7,8 @@ import (
 // "net/http"
 // "text/template"
 	// "../database"
+	"github.com/dossy007/go_projects/todo/database"
+
 )
 
 // type Vertex struct { //for save
@@ -24,30 +26,30 @@ func Number() int {
 	return num
 }
 
-// func Connected() []Vertex { //2重slice 全件取得
-// 	// db := database.ConnectDB()
-// 	// defer db.Close()
+func Connected() []Vertex { //2重slice 全件取得
+	db := database.ConnectDB()
+	defer db.Close()
 
-// 	// //sql
-// 	// rows, err := db.Query(`SELECT id,body,image,created_at,updated_at FROM posts`)
-// 	// if err != nil {
-// 	// 	log.Fatal(err)
-// 	// }
+	//sql
+	rows, err := db.Query(`SELECT id,body,image,created_at,updated_at FROM posts`)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-// 	var sli []Vertex
-// 	var v1 Vertex //structをv1で使用する宣言
+	var sli []Vertex
+	var v1 Vertex //structをv1で使用する宣言
 
-// 	// for rows.Next() { //nextはscanを使う為
+	for rows.Next() { //nextはscanを使う為
 
-// 	// 	if err := rows.Scan(&v1.Id, &v1.Body, &v1.Image, &v1.Created_time, &v1.Updated_time); err != nil {
-// 	// 		log.Fatal(err)
-// 	// 	}
+		if err := rows.Scan(&v1.Id, &v1.Body, &v1.Image, &v1.Created_time, &v1.Updated_time); err != nil {
+			log.Fatal(err)
+		}
 	
-// 		sli = append(sli, v1)
-// 	// }
-// 	fmt.Println(sli)
-// 	return sli
-// }
+		sli = append(sli, v1)
+	}
+	fmt.Println(sli)
+	return sli
+}
 
 // func Create(body string, image string) {
 // 	db := database.ConnectDB()
