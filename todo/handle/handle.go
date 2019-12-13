@@ -6,15 +6,17 @@ import (
 	// "sort"
 	// "strconv"
 	"text/template"
+	// "github.com/dossy007/go_projects/todo/serv"
 
-	// "../serv"
+
+	"../serv"
 	// "../serv"
 )
 
 func Showindex(w http.ResponseWriter, r *http.Request) {
 	tem, _ := template.ParseFiles("index.html")
 
-	// p := serv.Connected()
+	p := serv.Connected()
 	//serv packageのConnected funcでdbの情報を受けとる
 
 	// if r.Method == "POST" { //sort time
@@ -34,7 +36,7 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 	// 			})
 	// 	}
 	// }
-	p:= 1
+	// p:= 1
 	tem.Execute(w, p)
 	//execute is template to act and http.RequestWriter に書き出す
 }
