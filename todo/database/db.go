@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"os"
-	"fmt"
+	// "fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 	//sql: unknown driver "mysql" (forgotten import?)と言われる
@@ -13,7 +13,7 @@ var db *sql.DB
 
 func ConnectDB() *sql.DB {
 	// db, err := sql.Open("mysql", "root:@/mydb?parseTime=true")
-	const (
+	var (
 		connectionName = os.Getenv("CLOUDSQL_CONNECTION_NAME")
 		user           = os.Getenv("CLOUDSQL_USER")
 		name           = os.Getenv("CLOUDSQL_DATABASE_NAME")
