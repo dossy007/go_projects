@@ -20,7 +20,10 @@ func ConnectDB() *sql.DB {
 )
 
 var err error
-db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@cloudsql(%s)/", user, password, connectionName))
+// db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@cloudsql(%s)/", user, password, connectionName))
+db,err = sql.Open(fmt.Sprintf("%s:%s@unix(/cloudsql/%s)/myprojectdb",user,password,connectionName)
+// db, err := sql.Open("mysql", "testuser:testpass@unix(/cloudsql/testproj:asia-northeast1:testinstance)/testdb")
+
 if err != nil {
 		log.Fatalf("Could not open db: %v", err)
 }
