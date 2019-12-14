@@ -3,7 +3,7 @@ package handle
 import (
 	"net/http"
 	"net/url"
-	// "sort"
+	"sort"
 	"strconv"
 	"text/template"
 	"github.com/dossy007/go_projects/todo/serv"
@@ -19,35 +19,39 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 	p := serv.Connected()
 	//serv packageのConnected funcでdbの情報を受けとる
 
-	// if r.Method == "POST" { //sort time
-	// 	r.ParseForm()
-	// 	form := r.PostForm
-	// 	s, _ := strconv.Atoi(form["sort_id"][0])
-	// 	switch s {
-	// 	case 0: //new
-	// 		sort.Slice(p,
-	// 			func(i, j int) bool {
-	// 				return p[i].Updated_time.After(p[j].Updated_time)
-	// 			})
-	// 	case 1: //old
-	// 		sort.Slice(p,
-	// 			func(i, j int) bool {
-	// 				return p[i].Updated_time.Before(p[j].Updated_time)
-	// 			})
-	// 	}
-	// }
-	// p:= 55
-	// p:= serv.Number()
-	tem.Execute(w, p)
-	//execute is template to act and http.RequestWriter に書き出す
+	if r.Method == "POST" { //sort time
+		r.ParseForm()
+		form := r.PostForm
+		s, _ := strconv.Atoi(form["sort_id"][0])
+		switch s {
+		case 0: //new
+			sort.Slice(p,
+				func(i, j int) bool {
+						return p[i].Updated_time.After(p[j].Updated_time)
+					})
+			case 1: //old
+				sort.Slice(p,
+						func(i, j int) bool {
+								return p[i].Updated_time.Before(p[j].Updated_time)
+							})
+					}
+				}
+				tem.Execute(w, p)
+				//execute is template to act and http.RequestWriter に書き出す
 }
 
 func New(w http.ResponseWriter, r *http.Request) {
-
+	
 	tem, _ := template.ParseFiles("new.html")
 	tem.Execute(w, "")
 }
 
+func Edit(w http.ResponseWriter, r *http.Request) {
+	tem, _ := template.ParseFiles("edit.html")
+	params := r.URL.Query()       //Queryで取得 map
+	e := serv.Edit(Getid(params)) //return []serv.Vertex
+	tem.Execute(w, e[0])
+}
 func Create(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 
@@ -66,12 +70,6 @@ func Create(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Edit(w http.ResponseWriter, r *http.Request) {
-	tem, _ := template.ParseFiles("edit.html")
-	params := r.URL.Query()       //Queryで取得 map
-	e := serv.Edit(Getid(params)) //return []serv.Vertex
-	tem.Execute(w, e[0])
-}
 
 func Update(w http.ResponseWriter, r *http.Request) {
 	if r.PostFormValue("_method") == "PUT" {
