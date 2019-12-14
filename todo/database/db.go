@@ -24,7 +24,7 @@ func ConnectDB() *sql.DB {
 var err error
 // db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@cloudsql(%s)/", user, password, connectionName))
 
-var dbopenstring = user + ":"+ password + "@unix(/cloudsql/"+connectionName+")/"+name
+var dbopenstring = user + ":"+ password + "@unix(/cloudsql/"+connectionName+")/"+name +"?parseTime=true"
 // var dbopenstring = user + ":"+ password + "@cloudsql("+connectionName+")/"+name
 
 // user:password@unix(/cloudsql/INSTANCE_CONNECTION_NAME)/dbname
