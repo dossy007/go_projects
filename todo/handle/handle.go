@@ -54,13 +54,13 @@ func Create(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm() // Bodyデータを扱うには、事前にパースを行う
 
 		// Formデータを取得
-		// form := r.PostForm
-		// body := form["body"][0]
-		// image := form["image"][0] //form is map value is []string of sliceで来るから[0]で取得
+		form := r.PostForm
+		body := form["body"][0]
+		image := form["image"][0] //form is map value is []string of sliceで来るから[0]で取得
 
 		// fmt.Fprintf(w, "フォーム1：\n%v\n", form["say"])
-		//         wに描く format string  書き込む内容
-		// serv.Create(body, image) //insert to db
+		        // wに描く format string  書き込む内容
+		serv.Create(body, image) //insert to db
 
 		http.Redirect(w, r, "/", http.StatusMovedPermanently) //code 301
 	}

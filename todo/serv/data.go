@@ -51,18 +51,18 @@ func Connected() []Vertex { //2重slice 全件取得
 	return sli
 }
 
-// func Create(body string, image string) {
-// 	db := database.ConnectDB()
-// 	defer db.Close()
+func Create(body string, image string) {
+	db := database.ConnectDB()
+	defer db.Close()
 
-// 	create_time := time.Now() //time.Time
-// 	rows, err := db.Prepare("INSERT INTO posts(body,image,created_at,updated_at) VALUES(?,?,?,?)")
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	rows.Exec(body, image, create_time, create_time)
-// 	// Exec()にプリペアードステートメントを指定してSQLを実行する
-// }
+	create_time := time.Now() //time.Time
+	rows, err := db.Prepare("INSERT INTO posts(body,image,created_at,updated_at) VALUES(?,?,?,?)")
+	if err != nil {
+		log.Fatal(err)
+	}
+	rows.Exec(body, image, create_time, create_time)
+	// Exec()にプリペアードステートメントを指定してSQLを実行する
+}
 
 // func Edit(id int) []Vertex {
 // 	db := database.ConnectDB()
