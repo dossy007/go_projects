@@ -37,7 +37,7 @@ if err != nil {
 	// 	log.Fatal(err)
 	// }
 
-	err = db.Close()
+	// err = db.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
