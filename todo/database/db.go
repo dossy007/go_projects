@@ -27,7 +27,6 @@ var dbopenstring = user + ":"+ password + "@unix(/cloudsql/"+connectionName+")/"
 // user:password@unix(/cloudsql/INSTANCE_CONNECTION_NAME)/dbname
 
 db,err = sql.Open("mysql",dbopenstring)
-// db, err := sql.Open("mysql", "testuser:testpass@unix(/cloudsql/testproj:asia-northeast1:testinstance)/testdb")
 
 if err != nil {
 		log.Fatalf("Could not open db: %v", err)
