@@ -7,6 +7,7 @@ import (
 	// "fmt"
 
 	_ "github.com/go-sql-driver/mysql"
+	_"github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/dialers/mysql"
 	//sql: unknown driver "mysql" (forgotten import?)と言われる
 )
 var db *sql.DB
