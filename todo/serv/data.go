@@ -3,12 +3,9 @@ package serv
 import (
 	"log"
 	"time"
-"fmt"
-// "net/http"
-// "text/template"
+  "fmt"
 	// "../database"
 	"github.com/dossy007/go_projects/todo/database"
-
 )
 
 type Vertex struct { //for save
@@ -17,13 +14,6 @@ type Vertex struct { //for save
 	Image        string
 	Created_time time.Time
 	Updated_time time.Time
-}
-
-
-
-func Number() int {
-	num := 77
-	return num
 }
 
 func Connected() []Vertex { //2重slice 全件取得
@@ -72,9 +62,10 @@ func Edit(id int) []Vertex {
 	if err != nil {
 		log.Fatal(err)
 	}
+	
 	var sli []Vertex  // sliceをVertexで定義
 	var v1 Vertex     //structをv1で使用する宣言
-	for rows.Next() { //nextはscanを使う為
+	for rows.Next() { //next is to use scan
 		if err := rows.Scan(&v1.Id, &v1.Body, &v1.Image, &v1.Created_time, &v1.Updated_time); err != nil {
 			log.Fatal(err)
 		}

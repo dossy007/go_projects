@@ -7,10 +7,6 @@ import (
 	"strconv"
 	"text/template"
 	"github.com/dossy007/go_projects/todo/serv"
-
-
-	// "./serv"
-	// "../serv"
 )
 
 func Showindex(w http.ResponseWriter, r *http.Request) {
@@ -97,7 +93,7 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 
 func Getid(params url.Values) int { //get id from httprequest
 	var num string
-	for k, _ := range params { //mapのkeyをget
+	for k, _ := range params { //get map_key
 		num = k
 	}
 
