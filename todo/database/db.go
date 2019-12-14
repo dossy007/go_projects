@@ -13,15 +13,20 @@ var db *sql.DB
 
 func ConnectDB() *sql.DB {
 	// db, err := sql.Open("mysql", "root:@/mydb?parseTime=true")
-	var (
+	const (
 		connectionName = os.Getenv("CLOUDSQL_CONNECTION_NAME")
 		user           = os.Getenv("CLOUDSQL_USER")
+		name           = os.Getenv("CLOUDSQL_DATABASE_NAME")
 		password       = os.Getenv("CLOUDSQL_PASSWORD") // NOTE: password may be empty
 )
 
 var err error
 // db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@cloudsql(%s)/", user, password, connectionName))
-db,err = sql.Open("mysql",fmt.Sprintf("%s:%s@unix(/cloudsql/%s)/myprojectdb",user,password,connectionName)
+
+const dbopenstring = name + ':'+ password + '@unix(/cloudsql/'+connectionName+')/'+name
+// user:password@unix(/cloudsql/INSTANCE_CONNECTION_NAME)/dbname
+
+db,err = sql.Open("mysql",dbopenstring)
 // db, err := sql.Open("mysql", "testuser:testpass@unix(/cloudsql/testproj:asia-northeast1:testinstance)/testdb")
 
 if err != nil {
