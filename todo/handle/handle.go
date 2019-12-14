@@ -66,43 +66,43 @@ func Create(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// func Edit(w http.ResponseWriter, r *http.Request) {
-// 	tem, _ := template.ParseFiles("edit.html")
-// 	params := r.URL.Query()       //Queryで取得 map
-// 	e := serv.Edit(Getid(params)) //return []serv.Vertex
-// 	tem.Execute(w, e[0])
-// }
+func Edit(w http.ResponseWriter, r *http.Request) {
+	tem, _ := template.ParseFiles("edit.html")
+	params := r.URL.Query()       //Queryで取得 map
+	e := serv.Edit(Getid(params)) //return []serv.Vertex
+	tem.Execute(w, e[0])
+}
 
-// func Update(w http.ResponseWriter, r *http.Request) {
-// 	if r.PostFormValue("_method") == "PUT" {
-// 		r.ParseForm()
+func Update(w http.ResponseWriter, r *http.Request) {
+	if r.PostFormValue("_method") == "PUT" {
+		r.ParseForm()
 
-// 		form := r.PostForm
-// 		params := r.URL.Query()
-// 		id := Getid(params)
-// 		body := form["body"][0]
-// 		image := form["image"][0]
+		form := r.PostForm
+		params := r.URL.Query()
+		id := Getid(params)
+		body := form["body"][0]
+		image := form["image"][0]
 
-// 		serv.Update(id, body, image)
-// 		http.Redirect(w, r, "/", http.StatusMovedPermanently)
-// 	}
-// }
+		serv.Update(id, body, image)
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	}
+}
 
-// func Delete(w http.ResponseWriter, r *http.Request) {
-// 	if r.Method == "DELETE" {
-// 		params := r.URL.Query()    //to use Getid
-// 		serv.Delete(Getid(params)) //use sql delete func
+func Delete(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "DELETE" {
+		params := r.URL.Query()    //to use Getid
+		serv.Delete(Getid(params)) //use sql delete func
 
-// 		http.Redirect(w, r, "/", http.StatusMovedPermanently)
-// 	}
-// }
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	}
+}
 
-// func Getid(params url.Values) int { //get id from httprequest
-// 	var num string
-// 	for k, _ := range params { //mapのkeyをget
-// 		num = k
-// 	}
+func Getid(params url.Values) int { //get id from httprequest
+	var num string
+	for k, _ := range params { //mapのkeyをget
+		num = k
+	}
 
-// 	i, _ := strconv.Atoi(num) //string to int
-// 	return i
-// }
+	i, _ := strconv.Atoi(num) //string to int
+	return i
+}

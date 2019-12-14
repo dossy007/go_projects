@@ -64,45 +64,45 @@ func Create(body string, image string) {
 	// Exec()にプリペアードステートメントを指定してSQLを実行する
 }
 
-// func Edit(id int) []Vertex {
-// 	db := database.ConnectDB()
-// 	defer db.Close()
-// 	rows, err := db.Query("SELECT * FROM posts WHERE id = ?", id)
-// 	//where分は配列で取得しよる
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	var sli []Vertex  // sliceをVertexで定義
-// 	var v1 Vertex     //structをv1で使用する宣言
-// 	for rows.Next() { //nextはscanを使う為
-// 		if err := rows.Scan(&v1.Id, &v1.Body, &v1.Image, &v1.Created_time, &v1.Updated_time); err != nil {
-// 			log.Fatal(err)
-// 		}
-// 		sli = append(sli, v1) // [{v1}]
-// 	}
-// 	return sli
-// }
+func Edit(id int) []Vertex {
+	db := database.ConnectDB()
+	defer db.Close()
+	rows, err := db.Query("SELECT * FROM posts WHERE id = ?", id)
+	//where分は配列で取得しよる
+	if err != nil {
+		log.Fatal(err)
+	}
+	var sli []Vertex  // sliceをVertexで定義
+	var v1 Vertex     //structをv1で使用する宣言
+	for rows.Next() { //nextはscanを使う為
+		if err := rows.Scan(&v1.Id, &v1.Body, &v1.Image, &v1.Created_time, &v1.Updated_time); err != nil {
+			log.Fatal(err)
+		}
+		sli = append(sli, v1) // [{v1}]
+	}
+	return sli
+}
 
-// func Update(id int, body string, image string) {
-// 	db := database.ConnectDB()
-// 	defer db.Close()
-// 	update_time := time.Now()
+func Update(id int, body string, image string) {
+	db := database.ConnectDB()
+	defer db.Close()
+	update_time := time.Now()
 
-// 	rows, err := db.Prepare("UPDATE posts SET body =?,image =?,updated_at = ? WHERE id = ?")
+	rows, err := db.Prepare("UPDATE posts SET body =?,image =?,updated_at = ? WHERE id = ?")
 
-// 	if err != nil {
-// 		log.Fatal(err)
+	if err != nil {
+		log.Fatal(err)
 
-// 	}
-// 	rows.Exec(body, image, update_time, id)
-// }
+	}
+	rows.Exec(body, image, update_time, id)
+}
 
-// func Delete(id int) {
-// 	db := database.ConnectDB()
-// 	defer db.Close()
-// 	rows, err := db.Prepare("DELETE FROM posts WHERE id=?")
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	rows.Exec(id)
-// }
+func Delete(id int) {
+	db := database.ConnectDB()
+	defer db.Close()
+	rows, err := db.Prepare("DELETE FROM posts WHERE id=?")
+	if err != nil {
+		log.Fatal(err)
+	}
+	rows.Exec(id)
+}
