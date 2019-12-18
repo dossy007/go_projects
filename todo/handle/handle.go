@@ -32,7 +32,8 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 							})
 					}
 				}
-				tem.Execute(w, p)
+				value := serv.Changelayout(p)
+				tem.Execute(w, value)
 				//execute is template to act and http.RequestWriter に書き出す
 }
 
