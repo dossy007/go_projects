@@ -16,6 +16,17 @@ type Vertex struct { //for save
 	Updated_time time.Time
 }
 
+type Stringtime struct { //for show date
+	Id int
+	Body string
+	Image string
+	Create_time string
+	Updated_time string
+}
+
+const time_layout = "2006-01-02 15:04:05"
+
+	
 func Connected() []Vertex { //2重slice 全件取得
 	db := database.ConnectDB()
 	defer db.Close()
@@ -96,4 +107,15 @@ func Delete(id int) {
 		log.Fatal(err)
 	}
 	rows.Exec(id)
+}
+
+
+func Changelayout(t []Vertex)[]Stringtime { // for use time(2006-01-02 15:04:05), serv []Vertex ,return []Stringtime
+	var sli []Stringtime
+	for _, v := range t { //get map_key
+		stime := v.Created_time.Format(time_layout)
+		v1 := Stringtime{v.Id,v.Body,v.Image,stime,stime} 
+		sli = append(sli, v1)
+	}
+	return sli
 }
