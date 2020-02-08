@@ -63,7 +63,7 @@ func Create(w http.ResponseWriter, r *http.Request) {
 		// wに描く format string  書き込む内容
 		serv.Create(body, image) //insert to db
 
-		http.Redirect(w, r, "/", http.StatusMovedPermanently) //code 301
+		http.Redirect(w, r, "/todo", http.StatusMovedPermanently) //code 301
 	}
 }
 
@@ -78,7 +78,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 		image := form["image"][0]
 
 		serv.Update(id, body, image)
-		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		http.Redirect(w, r, "/todo", http.StatusMovedPermanently)
 	}
 }
 
@@ -87,7 +87,7 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 		params := r.URL.Query()    //to use Getid
 		serv.Delete(Getid(params)) //use sql delete func
 
-		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+		http.Redirect(w, r, "/todo", http.StatusMovedPermanently)
 	}
 }
 
