@@ -49,6 +49,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 	e := serv.Edit(Getid(params)) //return []serv.Vertex
 	tem.Execute(w, e[0])
 }
+
 func Create(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 
@@ -78,7 +79,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 		image := form["image"][0]
 
 		serv.Update(id, body, image)
-		http.Redirect(w, r, "/todo", http.StatusMovedPermanently)
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
 	}
 }
 
@@ -87,7 +88,7 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 		params := r.URL.Query()    //to use Getid
 		serv.Delete(Getid(params)) //use sql delete func
 
-		http.Redirect(w, r, "/todo", http.StatusMovedPermanently)
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
 	}
 }
 
