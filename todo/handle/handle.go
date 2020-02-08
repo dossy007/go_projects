@@ -1,12 +1,12 @@
 package handle
 
 import (
+	"github.com/dossy007/go_projects/todo/serv"
 	"net/http"
 	"net/url"
 	"sort"
 	"strconv"
 	"text/template"
-	"github.com/dossy007/go_projects/todo/serv"
 )
 
 func Showindex(w http.ResponseWriter, r *http.Request) {
@@ -23,22 +23,22 @@ func Showindex(w http.ResponseWriter, r *http.Request) {
 		case 0: //new
 			sort.Slice(p,
 				func(i, j int) bool {
-						return p[i].Updated_time.After(p[j].Updated_time)
-					})
-			case 1: //old
-				sort.Slice(p,
-						func(i, j int) bool {
-								return p[i].Updated_time.Before(p[j].Updated_time)
-							})
-					}
-				}
-				value := serv.Changelayout(p)
-				tem.Execute(w, value)
-				//execute is template to act and http.RequestWriter に書き出す
+					return p[i].Updated_time.After(p[j].Updated_time)
+				})
+		case 1: //old
+			sort.Slice(p,
+				func(i, j int) bool {
+					return p[i].Updated_time.Before(p[j].Updated_time)
+				})
+		}
+	}
+	value := serv.Changelayout(p)
+	tem.Execute(w, value)
+	//execute is template to act and http.RequestWriter に書き出す
 }
 
 func New(w http.ResponseWriter, r *http.Request) {
-	
+
 	tem, _ := template.ParseFiles("new.html")
 	tem.Execute(w, "")
 }
@@ -60,13 +60,12 @@ func Create(w http.ResponseWriter, r *http.Request) {
 		image := form["image"][0] //form is map value is []string of sliceで来るから[0]で取得
 
 		// fmt.Fprintf(w, "フォーム1：\n%v\n", form["say"])
-		        // wに描く format string  書き込む内容
+		// wに描く format string  書き込む内容
 		serv.Create(body, image) //insert to db
 
 		http.Redirect(w, r, "/", http.StatusMovedPermanently) //code 301
 	}
 }
-
 
 func Update(w http.ResponseWriter, r *http.Request) {
 	if r.PostFormValue("_method") == "PUT" {
@@ -92,6 +91,11 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func Portfolio(w http.ResponseWriter, r *http.Request) {
+	v := 1
+	render("portfolio").Execute(w, v)
+}
+
 func Getid(params url.Values) int { //get id from httprequest
 	var num string
 	for k, _ := range params { //get map_key
@@ -100,4 +104,9 @@ func Getid(params url.Values) int { //get id from httprequest
 
 	i, _ := strconv.Atoi(num) //string to int
 	return i
+}
+
+func render(name string) *template.Template {
+	t, _ := template.ParseFiles(name + ".html")
+	return t
 }
